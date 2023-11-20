@@ -117,7 +117,6 @@
         class="js-SubmitOnce"
         id="new_prisoner_step"
         autocomplete="off"
-        action="/en/request"
         accept-charset="UTF-8"
         method="post"
       >
@@ -126,7 +125,7 @@
             <div class="govuk-form-group">
               <h2 class="govuk-heading-m">Prisoner details</h2>
             </div>
-            <fieldset>
+            <fieldset class="govuk-fieldset" role="group">
               <div class="govuk-form-group">
                 <label class="govuk-label" for="prisoner_step_first_name"
                   >Prisoner first name</label>
@@ -182,23 +181,24 @@
                 </fieldset>
               </div>
               <div class="govuk-form-group">
-                <label class="form-label" for="prisoner_step_number"
-                  >Prisoner number<span class="form-hint" id="number_hint"
-                    >For example, A1234BC</span
-                  ></label
-                ><input
-                  class="form-control"
+                <fieldset class="govuk-fieldset" role="group">
+                <label class="govuk-label" for="prisoner_step_number">Prisoner number
+                </label>
+                <span class="govuk-hint" id="number_hint">For example, A1234BC</span>
+                <input
+                  class="govuk-input"
                   type="text"
                   name="prisoner_step[number]"
                   id="prisoner_step_number"
                 />
+                </fieldset>
               </div>
               <div class="govuk-form-group">
-                <label class="govuk-label" for="prisoner_step_prison_id"
-                  >Prison name<span class="govuk-hint" id="prison_id_hint"
-                    >For example, Cardiff</span
-                  ></label
-                ><select
+
+                <label class="govuk-label" for="prisoner_step_prison_id">Prison name</label>
+
+                <span class="govuk-hint" id="prison_id_hint">For example, Cardiff</span>
+                <select
                   class="govuk-select"
                   name="prisoner_step[prison_id]"
                   id="prisoner_step_prison_id"
@@ -619,7 +619,7 @@
                   type="submit"
                   name="commit"
                   value="Continue"
-                  class="button button-primary"
+                  class="govuk-button"
                   data-disable-with="Continue"
                 />
               </div>

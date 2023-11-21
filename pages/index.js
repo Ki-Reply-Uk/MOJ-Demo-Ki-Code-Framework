@@ -28,8 +28,14 @@ export default function FirstPage() {
                 <Input />
               </Label>
             </FormGroup>
-            
             <FormGroup>
+              <Label>
+                <LabelText>Date of birth</LabelText>
+                <HintText>For example, 31/12/1980</HintText>
+                <Input name="dob" type="text" pattern="\d{2}/\d{2}/\d{4}" />
+              </Label>
+            </FormGroup>            
+	        <FormGroup>
               <Label>
                 <LabelText>Prisoner number</LabelText>
                 <HintText>For example, A1234BC</HintText>

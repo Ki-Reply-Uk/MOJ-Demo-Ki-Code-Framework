@@ -29,13 +29,6 @@ export default function FirstPage() {
               </Label>
             </FormGroup>
             <FormGroup>
-              <DateField
-                hintText="For example, 29 04 1966"
-              >
-                Prisoner date of birth
-              </DateField>
-            </FormGroup>
-            <FormGroup>
               <Label>
                 <LabelText>Prisoner number</LabelText>
                 <HintText>For example, A1234BC</HintText>

@@ -1,4 +1,4 @@
-import { Page, TopNav, H1, Fieldset, GridRow, GridCol, FormGroup, Heading, Label, LabelText, HintText, Input, DateField, Select, Button } from "govuk-react";
+import { Page, TopNav, H1, Fieldset, GridRow, GridCol, FormGroup, Heading, Label, LabelText, HintText, Input, Select, Button } from "govuk-react";
 
 export default function FirstPage() {
   return (
@@ -29,13 +29,13 @@ export default function FirstPage() {
               </Label>
             </FormGroup>
             <FormGroup>
-              <DateField
-                hintText="For example, 29 04 1966"
-              >
-                Prisoner date of birth
-              </DateField>
-            </FormGroup>
-            <FormGroup>
+              <Label>
+                <LabelText>Date of birth</LabelText>
+                <HintText>For example, 31/12/1980</HintText>
+                <Input name="dob" type="text" pattern="\d{2}/\d{2}/\d{4}" />
+              </Label>
+            </FormGroup>            
+	    <FormGroup>
               <Label>
                 <LabelText>Prisoner number</LabelText>
                 <HintText>For example, A1234BC</HintText>

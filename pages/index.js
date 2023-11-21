@@ -1,4 +1,4 @@
-import { Page, TopNav, H1, Fieldset, GridRow, GridCol, FormGroup, Heading, Label, LabelText, HintText, Input, Select, Button } from "govuk-react";
+import { Page, TopNav, H1, Fieldset, GridRow, GridCol, FormGroup, Heading, Label, LabelText, HintText, Input, DateField, Select, Button } from "govuk-react";
 
 export default function FirstPage() {
   return (
@@ -27,6 +27,13 @@ export default function FirstPage() {
                 <LabelText>Prisoner last name</LabelText>
                 <Input />
               </Label>
+            </FormGroup>
+            <FormGroup>
+              <DateField
+                hintText="For example, 29 04 1966"
+              >
+                Prisoner date of birth
+              </DateField>
             </FormGroup>
             <FormGroup>
               <Label>

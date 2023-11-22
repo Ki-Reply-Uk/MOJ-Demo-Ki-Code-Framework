@@ -1,6 +1,5 @@
 import { Page, TopNav, H1, Fieldset, GridRow, GridCol, FormGroup, Heading, Label, LabelText, HintText, Input, Select, Button } from "govuk-react";
 import React, { useState, useEffect } from 'react'; 
-import {validateFirstName, validateLastName, validatePrisonNumber, validatePrisonName} from '../validators/validators'
 
 export default function FirstPage() {
 
@@ -9,6 +8,24 @@ export default function FirstPage() {
   const [prisonerNumber, setPrisonerNumber] = useState("");
   const [prisonName, setPrisonName] = useState("");
   const [isFormValid, setIsFormValid] = useState(false);
+
+  const validateFirstName: (value?: string) => string | undefined = (value) =>
+  value ? undefined : 'Please enter a first name';
+  const validateLastName: (value?: string) => string | undefined = (value) =>
+  value ? undefined : 'Please enter a last name';
+  const validatePrisonName: (value?: string) => string | undefined = (value) =>
+    value ? undefined : 'Please enter a prison name';
+  // prison number is a capital A followed by 4 numbers and 2 letters
+  const validatePrisonNumber: (value?: string) => string | undefined = (value) =>{
+      const prisonerNumberRegex = /([A])\d{4}[A-Z]{2}/
+      let result: string | undefined;
+      if (value) {
+          result = prisonerNumberRegex.test(value) ? undefined : "Please enter a correctly formatted prisoner number";
+      } else {
+          return "Please enter a prisoner number";
+      }
+      return result;
+  };
 
   const validateForm = () => {
     if (!validateFirstName(firstName) && !validateLastName(lastName) && !validatePrisonName(prisonName) && !validatePrisonNumber(prisonerNumber)) {

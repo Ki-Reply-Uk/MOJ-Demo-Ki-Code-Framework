@@ -29,4 +29,7 @@ const nextConfig = {
     // distDir: 'dist',
   }
    
+if (isGithubActions) {
   module.exports = nextConfig
+}
+  

@@ -75,13 +75,6 @@ export default function FirstPage() {
                 <Input value={lastName} onChange={(e) => setLastname(e.target.value)} />
               </Label>
             </FormGroup>
-            <FormGroup>
-              <Label>
-                <LabelText>Date of birth</LabelText>
-                <HintText>For example, 31/12/1980</HintText>
-                <Input name="dob" type="text" pattern="\d{2}/\d{2}/\d{4}" />
-              </Label>
-            </FormGroup>            
 	        <FormGroup>
               <Label>
                 <LabelText>Prisoner number</LabelText>
@@ -93,8 +86,10 @@ export default function FirstPage() {
                 <Select
                   label="Prison name"
                   hint="For example, Cardiff"
-                  value={prisonName}
-                  onChange={(e) => setPrisonName(e.target.value)}
+                  input={{
+                    value: prisonName,
+                    onChange: (e) => setPrisonName(e.target.value)
+                  }}
                 >
                 <option value="">select a prison</option>
                   <option value="a81df211-95a1-47bc-9db4-866d54040121">

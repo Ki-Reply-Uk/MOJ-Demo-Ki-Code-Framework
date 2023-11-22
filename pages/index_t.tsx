@@ -6,6 +6,7 @@ export default function FirstPage() {
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastname] = useState("");
   const [prisonerNumber, setPrisonerNumber] = useState("");
+  const [selectedDate, setSelectedDate] = useState(new Date().toISOString().slice(0, 10));
   const [prisonName, setPrisonName] = useState("");
   const [isFormValid, setIsFormValid] = useState(false);
 
@@ -15,6 +16,13 @@ export default function FirstPage() {
   value ? undefined : 'Please enter a last name';
   const validatePrisonName: (value?: string) => string | undefined = (value) =>
     value ? undefined : 'Please enter a prison name';
+  const validateSelectedDate: (value?: string) => string | undefined = (value) => {
+    if (!value) {
+      return 'Please select a date';
+    }
+    const dateRegex = /^\d{4}-\d{2}-\d{2}$/;
+    return dateRegex.test(value) ? undefined : 'Please enter a valid date';
+  };
   // prison number is a capital A followed by 4 numbers and 2 letters
   const validatePrisonNumber: (value?: string) => string | undefined = (value) =>{
       const prisonerNumberRegex = /([A])\d{4}[A-Z]{2}/
@@ -28,7 +36,7 @@ export default function FirstPage() {
   };
 
   const validateForm = () => {
-    if (!validateFirstName(firstName) && !validateLastName(lastName) && !validatePrisonName(prisonName) && !validatePrisonNumber(prisonerNumber)) {
+    if (!validateFirstName(firstName) && !validateLastName(lastName) && !validatePrisonName(prisonName) && !validatePrisonNumber(prisonerNumber) && !validateSelectedDate(selectedDate)) {
       setIsFormValid(true);
     } else {
       setIsFormValid(false);
@@ -37,11 +45,12 @@ export default function FirstPage() {
 
   useEffect(() => {
     validateForm();
-  }, [firstName, lastName, prisonerNumber, prisonName]);
+  }, [firstName, lastName, prisonerNumber, prisonName, selectedDate]);
 
   const handleSubmit = () => {
     console.log("Button clicked");
     if (isFormValid) {
+      console.log("Selected date:", selectedDate);
       console.log("Form is valid.");
     } else {
       console.log("The form is invalid, please ensure all fields are existing and formatted.");
@@ -75,7 +84,14 @@ export default function FirstPage() {
                 <Input value={lastName} onChange={(e) => setLastname(e.target.value)} />
               </Label>
             </FormGroup>
-	        <FormGroup>
+            <FormGroup>
+              <Label>
+                <LabelText>Visitation Date</LabelText>
+                <HintText>Select the date you plan to visit</HintText>
+                <Input type="date" value={selectedDate} onChange={(e) => setSelectedDate(e.target.value)} />
+              </Label>
+            </FormGroup>
+	    <FormGroup>
               <Label>
                 <LabelText>Prisoner number</LabelText>
                 <HintText>For example, A1234BC</HintText>

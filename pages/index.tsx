@@ -18,10 +18,10 @@ import React, { useState, useEffect } from "react";
 
 export default function FirstPage() {
   const [firstName, setFirstName] = useState("");
+  const [middleName, setMiddleName] = useState("");
   const [lastName, setLastname] = useState("");
   const [prisonerNumber, setPrisonerNumber] = useState("");
   const [prisonName, setPrisonName] = useState("");
-  const [dateOfBirth, setDateOfBirth] = useState("");
   const [isFormValid, setIsFormValid] = useState(false);
 
   const validateFirstName: (value?: string) => string | undefined = (value) =>
@@ -30,12 +30,6 @@ export default function FirstPage() {
     value ? undefined : "Please enter a last name";
   const validatePrisonName: (value?: string) => string | undefined = (value) =>
     value ? undefined : "Please enter a prison name";
-
-  const validateDateOfBirth = (value) => {
-    if (!value) return "Please enter a date of birth";
-    const dateRegex = /^(19|20)\d\d[- /.](0[1-9]|1[012])[- /.](0[1-9]|[12][0-9]|3[01])$/;
-    return dateRegex.test(value) ? undefined : "Please enter a valid date of birth in the format YYYY-MM-DD";
-  };
 
   // prison number is a capital A followed by 4 numbers and 2 letters
   const validatePrisonNumber: (value?: string) => string | undefined = (
@@ -58,7 +52,6 @@ export default function FirstPage() {
       !validateFirstName(firstName) &&
       !validateLastName(lastName) &&
       !validatePrisonName(prisonName) &&
-      !validateDateOfBirth(dateOfBirth) &&
       !validatePrisonNumber(prisonerNumber)
     ) {
       setIsFormValid(true);
@@ -69,7 +62,7 @@ export default function FirstPage() {
 
   useEffect(() => {
     validateForm();
-  }, [firstName, lastName, prisonerNumber, prisonName]);
+  }, [firstName, lastName, middleName, prisonerNumber, prisonName]);
 
   const handleSubmit = () => {
     console.log("Button clicked");
@@ -103,21 +96,19 @@ export default function FirstPage() {
             </FormGroup>
             <FormGroup>
               <Label>
-                <LabelText>Prisoner last name</LabelText>
+                <LabelText>Prisoner middle name (optional)</LabelText>
                 <Input
-                  value={lastName}
-                  onChange={(e) => setLastname(e.target.value)}
+                  value={middleName}
+                  onChange={(e) => setMiddleName(e.target.value)}
                 />
               </Label>
             </FormGroup>
             <FormGroup>
               <Label>
-                <LabelText>Date of Birth</LabelText>
-                <HintText>For example, 1980-12-31</HintText>
+                <LabelText>Prisoner last name</LabelText>
                 <Input
-                  type="date"
-                  value={dateOfBirth}
-                  onChange={(e) => setDateOfBirth(e.target.value)}
+                  value={lastName}
+                  onChange={(e) => setLastname(e.target.value)}
                 />
               </Label>
             </FormGroup>

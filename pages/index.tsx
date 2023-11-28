@@ -18,6 +18,7 @@ import React, { useState, useEffect } from "react";
 
 export default function FirstPage() {
   const [firstName, setFirstName] = useState("");
+  const [middleName, setMiddleName] = useState("");
   const [lastName, setLastname] = useState("");
   const [prisonerNumber, setPrisonerNumber] = useState("");
   const [prisonName, setPrisonName] = useState("");
@@ -61,7 +62,7 @@ export default function FirstPage() {
 
   useEffect(() => {
     validateForm();
-  }, [firstName, lastName, prisonerNumber, prisonName]);
+  }, [firstName, lastName, middleName, prisonerNumber, prisonName]);
 
   const handleSubmit = () => {
     console.log("Button clicked");
@@ -90,6 +91,15 @@ export default function FirstPage() {
                 <Input
                   value={firstName}
                   onChange={(e) => setFirstName(e.target.value)}
+                />
+              </Label>
+            </FormGroup>
+            <FormGroup>
+              <Label>
+                <LabelText>Prisoner middle name (optional)</LabelText>
+                <Input
+                  value={middleName}
+                  onChange={(e) => setMiddleName(e.target.value)}
                 />
               </Label>
             </FormGroup>

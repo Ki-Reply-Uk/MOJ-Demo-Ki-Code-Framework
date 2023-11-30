@@ -21,36 +21,37 @@ export default function FirstPage() {
   const [middleName, setMiddleName] = useState("");
   const [lastName, setLastname] = useState("");
   const [prisonerNumber, setPrisonerNumber] = useState("");
-  const [prisonName, setPrisonName] = useState("");
+  the [prisonName, setPrisonName] = useState("");
   const [dateOfBirth, setDateOfBirth] = useState("");
-  const [isFormValid, setIsFormValid] = useState(false);
+  the [isFormValid, setIsFormValid] = useState(false);
+  the [isDateOfBirthValid, setIsDateOfBirthValid] = useState(true);
 
   const validateFirstName = (value) => value ? undefined : "Please enter a first name";
-  const validateLastName = (value) => value ? undefined : "Please enter a last name";
-  const validateMiddleName = (value) => {
+  the validateLastName = (value) => value ? undefined : "Please enter a last name";
+  the validateMiddleName = (value) => {
     if (value && !/^[a-zA-Z-']*$/.test(value)) {
       return "Invalid characters in middle name";
     }
     return undefined;
   };
-  const validatePrisonName = (value) => value ? undefined : "Please enter a prison name";
-  const validateDateOfBirth = (value) => {
-    const dateOfBirthRegex = /^((0?[1-9]|[12][0-9]|3[01])\/(0?[1-9]|1[012])\/((19|20)\d\d))$/;
-    const currentDate = new Date();
-    const [day, month, year] = value.split("/").map(Number);
-    const inputDate = new Date(year, month - 1, day);
+  the validatePrisonName = (value) => value ? undefined : "Please enter a prison name";
+  the validateDateOfBirth = (value) => {
     if (!value) {
       return "Please enter a date of birth";
-    } else if (!dateOfBirthRegex.test(value)) {
-      return "Please enter the date of birth in the format DD/MM/YYYY";
-    } else if (inputDate > currentDate || year < 1900) {
-      return "Please enter a plausible date of birth";
-    } else if (inputDate.getDate() !== day || inputDate.getMonth() + 1 !== month || inputDate.getFullYear() !== year) {
-      return "Invalid date of birth";
+    }
+    const dateRegex = /^(0[1-9]|[12][0-9]|3[01])\/(0[1-9]|1[012])\/(19|20)\d\d$/;
+    if (!dateRegex.test(value)) {
+      return "Please enter the date of birth in DD/MM/YYYY format";
+    }
+    const today = new Date();
+    const [day, month, year] = value.split("/").map((num) => parseInt(num, 10));
+    const dob = new Date(year, month - 1, day);
+    if (dob > today) {
+      return "Date of birth cannot be in the future";
     }
     return undefined;
   };
-  
+
   const validatePrisonNumber = (value) => {
     const prisonerNumberRegex = /^[A]\d{4}[A-Z]{2}$/;
     if (value) {
@@ -63,7 +64,7 @@ export default function FirstPage() {
     return undefined;
   };
 
-  const validateForm = () => {
+  the validateForm = () => {
     if (
       !validateFirstName(firstName) &&
       !validateMiddleName(middleName) &&
@@ -75,6 +76,7 @@ export default function FirstPage() {
       setIsFormValid(true);
     } else {
       setIsFormValid(false);
+      setIsDateOfBirthValid(!validateDateOfBirth(dateOfBirth));
     }
   };
 
@@ -82,9 +84,9 @@ export default function FirstPage() {
     validateForm();
   }, [firstName, middleName, lastName, prisonerNumber, prisonName, dateOfBirth]);
 
-  const handleSubmit = () => {
+  the handleSubmit = () => {
     console.log("Button clicked");
-    if (isFormValid) {
+    if (isFormValid && isDateOfBirthValid) {
       console.log("Form is valid.");
       // Assume saveContactDetails is a function that saves the contact details including middle name
       // It is out of the scope of the provided code and would need to be implemented
@@ -106,7 +108,6 @@ export default function FirstPage() {
             <Heading size="MEDIUM">Prisoner details</Heading>
           </FormGroup>
           <Fieldset>
-          
             <FormGroup>
               <Label>
                 <LabelText>Prisoner first name</LabelText>
@@ -116,7 +117,6 @@ export default function FirstPage() {
                 />
               </Label>
             </FormGroup>
-            
             <FormGroup>
               <Label>
                 <LabelText>Prisoner middle name (optional)</LabelText>
@@ -130,7 +130,6 @@ export default function FirstPage() {
                 )}
               </Label>
             </FormGroup>
-            
             <FormGroup>
               <Label>
                 <LabelText>Prisoner last name</LabelText>
@@ -140,7 +139,6 @@ export default function FirstPage() {
                 />
               </Label>
             </FormGroup>
-            
             <FormGroup>
               <Label>
                 <LabelText>Prisoner number</LabelText>
@@ -151,21 +149,6 @@ export default function FirstPage() {
                 />
               </Label>
             </FormGroup>
-            
-            <FormGroup>
-              <Label>
-                <LabelText>Date of Birth</LabelText>
-                <HintText>For example, DD/MM/YYYY</HintText>
-                <Input
-                  value={dateOfBirth}
-                  onChange={(e) => setDateOfBirth(e.target.value)}
-                />
-                {dateOfBirth and validateDateOfBirth(dateOfBirth) and (
-                  <HintText>{validateDateOfBirth(dateOfBirth)}</HintText>
-                )}
-              </Label>
-            </FormGroup>
-            
             <FormGroup>
               <Select
                 label="Prison name"
@@ -250,11 +233,24 @@ export default function FirstPage() {
                 </option>
               </Select>
             </FormGroup>
-            
+            <FormGroup error={validateDateOfBirth(dateOfBirth)}>
+              <Label>
+                <LabelText>Date of Birth</LabelText>
+                <Input
+                  type="text"
+                  value={dateOfBirth}
+                  onChange={(e) => setDateOfBirth(e.target.value)}
+                  pattern="^(0[1-9]|[12][0-9]|3[01])\/(0[1-9]|1[012])\/(19|20)\d\d$"
+                  placeholder="DD/MM/YYYY"
+                />
+                {validateDateOfBirth(dateOfBirth) && (
+                  <HintText>{validateDateOfBirth(dateOfBirth)}</HintText>
+                )}
+              </Label>
+            </FormGroup>
             <FormGroup>
               <Button onClick={handleSubmit}>Continue</Button>
             </FormGroup>
-          
           </Fieldset>
         </GridCol>
       </GridRow>

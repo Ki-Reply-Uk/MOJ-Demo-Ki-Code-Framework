@@ -6,6 +6,7 @@
     "start": "next start"
   },
   "dependencies": {
+    "@formspree/react": "^2.5.1",
     "@types/styled-components": "^5.1.31",
     "govuk-frontend": "^4.7.0",
     "govuk-react": "^0.10.6",

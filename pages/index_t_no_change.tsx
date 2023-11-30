@@ -81,6 +81,7 @@ export default function FirstPage() {
     if (isFormValid) {
       console.log("Form is valid.");
       handleSubmit(event);
+      alert("Email sent!");
     } else {
       console.log(
         "The form is invalid, please ensure all fields are existing and formatted."

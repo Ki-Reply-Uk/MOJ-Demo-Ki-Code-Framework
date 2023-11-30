@@ -94,7 +94,7 @@ export default function FirstPage() {
       <H1>Visit Someone in Prison</H1>
 
       <GridRow>
-        <GridCol setWidth="two thirds">
+        <GridCol setWidth="two-thirds">
           <FormGroup>
             <Heading size="MEDIUM">Prisoner details</Heading>
           </FormGroup>
@@ -142,7 +142,7 @@ export default function FirstPage() {
                     onChange: (e) => setPrisonName(e.target.value),
                   }}
                 >
-                  <option value="">select a prison</option>
+                  <option value="">Select a prison</option>
                     <option value="Acklington">
                       Acklington
                     </option>

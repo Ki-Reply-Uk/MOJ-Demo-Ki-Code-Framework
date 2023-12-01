@@ -22,6 +22,7 @@ export default function FirstPage() {
   const [lastName, setLastname] = useState("");
   const [prisonerNumber, setPrisonerNumber] = useState("");
   const [prisonName, setPrisonName] = useState("");
+  const [dateOfBirth, setDateOfBirth] = useState("");
   const [isFormValid, setIsFormValid] = useState(false);
   const [state, handleSubmit] = useForm("mnqkkwpq");
   const [buttonClicked, setButtonClicked] = useState(false);
@@ -39,6 +40,28 @@ export default function FirstPage() {
     value ? undefined : "Please enter a last name";
   const validatePrisonName: (value?: string) => string | undefined = (value) =>
     value ? undefined : "Please enter a prison name";
+  
+  const validateDateOfBirth: (value?: string) => string | undefined = (value) => {
+    if (!value) {
+      return "Please enter the date of birth";
+    }
+    const dateRegex = /^(0?[1-9]|[12][0-9]|3[01])\/(0?[1-9]|1[012])\/((19|20)\d\d)$/;
+    if (!dateRegex.test(value)) {
+      return "Please enter a date in DD/MM/YYYY format";
+    }
+    const currentDate = new Date();
+    const [day, month, year] = value.split('/').map(Number);
+    const dateOfBirthDate = new Date(year, month - 1, day);
+    if (dateOfBirthDate > currentDate) {
+      return "Date of birth cannot be a future date";
+    }
+    if (day === 29 && month === 2) {
+      if (!(year % 400 === 0 || (year % 100 !== 0 && year % 4 === 0))) {
+        return "Invalid leap year date";
+      }
+    }
+    return undefined;
+  };
 
   // prison number is a capital A followed by 4 numbers and 2 letters
   const validatePrisonNumber: (value?: string) => string | undefined = (
@@ -61,7 +84,8 @@ export default function FirstPage() {
       !validateFirstName(firstName) &&
       !validateLastName(lastName) &&
       !validatePrisonName(prisonName) &&
-      !validatePrisonNumber(prisonerNumber)
+      !validatePrisonNumber(prisonerNumber) &&
+      !validateDateOfBirth(dateOfBirth)
     ) {
       setIsFormValid(true);
     } else {
@@ -71,8 +95,7 @@ export default function FirstPage() {
 
   useEffect(() => {
     validateForm();
-  }, [firstName, lastName, prisonerNumber, prisonName]);
-
+  }, [firstName, lastName, prisonerNumber, prisonName, dateOfBirth]);
 
   async function onSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault()
@@ -130,11 +153,24 @@ export default function FirstPage() {
                   />
                 </Label>
               </FormGroup>
+              <FormGroup error={buttonClicked && validateDateOfBirth(dateOfBirth)}>
+                <Label>
+                  <LabelText>Date of Birth</LabelText>
+                  <HintText>For example, 31/12/1990</HintText>
+                  <Input
+                    type="text"
+                    name="dateOfBirth"
+                    pattern="\d{1,2}/\d{1,2}/\d{4}"
+                    placeholder="DD/MM/YYYY"
+                    value={dateOfBirth}
+                    onChange={(e) => setDateOfBirth(e.target.value)}
+                  />
+                </Label>
+              </FormGroup>
               <FormGroup error={buttonClicked && validatePrisonName(prisonName)}>
                 <Select
                   label="Prison name"
                   hint="For example, Cardiff"
-                  
                   input={{
                     name:"prisonName",
                     value: prisonName,

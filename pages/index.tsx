@@ -25,6 +25,7 @@ export default function FirstPage() {
   const [isFormValid, setIsFormValid] = useState(false);
   const [state, handleSubmit] = useForm("mnqkkwpq");
   const [buttonClicked, setButtonClicked] = useState(false);
+  const [dob, setDob] = useState("");
 
   if (state.succeeded) {
       console.log("form sent");
@@ -39,6 +40,15 @@ export default function FirstPage() {
     value ? undefined : "Please enter a last name";
   const validatePrisonName: (value?: string) => string | undefined = (value) =>
     value ? undefined : "Please enter a prison name";
+  
+  const validateDob: (value?: string) => string | undefined = (value) => {
+    const dobRegex = /^(0?[1-9]|[12][0-9]|3[01])\/(0?[1-9]|1[012])\/(19|20)\d\d$/;
+    if (value && dobRegex.test(value)) {
+      return undefined;
+    } else {
+      return "Please enter the date of birth in DD/MM/YYYY format";
+    }
+  };
 
   // prison number is a capital A followed by 4 numbers and 2 letters
   const validatePrisonNumber: (value?: string) => string | undefined = (
@@ -61,7 +71,8 @@ export default function FirstPage() {
       !validateFirstName(firstName) &&
       !validateLastName(lastName) &&
       !validatePrisonName(prisonName) &&
-      !validatePrisonNumber(prisonerNumber)
+      !validatePrisonNumber(prisonerNumber) &&
+      !validateDob(dob)
     ) {
       setIsFormValid(true);
     } else {
@@ -71,8 +82,7 @@ export default function FirstPage() {
 
   useEffect(() => {
     validateForm();
-  }, [firstName, lastName, prisonerNumber, prisonName]);
-
+  }, [firstName, lastName, prisonerNumber, prisonName, dob]);
 
   async function onSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault()
@@ -116,6 +126,18 @@ export default function FirstPage() {
                     name="lastName"
                     value={lastName}
                     onChange={(e) => setLastname(e.target.value)}
+                  />
+                </Label>
+              </FormGroup>
+              <FormGroup error={buttonClicked && validateDob(dob)}>
+                <Label>
+                  <LabelText>Date of Birth (DD/MM/YYYY)</LabelText>
+                  <Input
+                    name="dob"
+                    type="date"
+                    value={dob}
+                    onChange={(e) => setDob(e.target.value)}
+                    pattern="\d{2}/\d{2}/\d{4}"
                   />
                 </Label>
               </FormGroup>
@@ -199,7 +221,7 @@ export default function FirstPage() {
                     <option value="Cardiff">
                       Cardiff
                     </option>
-                  </Select>
+                </Select>
               </FormGroup>
               <FormGroup>
                 <Button type="submit" disabled={state.submitting}>Continue</Button>

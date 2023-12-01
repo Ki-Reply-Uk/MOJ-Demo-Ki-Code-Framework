@@ -22,6 +22,7 @@ export default function FirstPage() {
   const [lastName, setLastname] = useState("");
   const [prisonerNumber, setPrisonerNumber] = useState("");
   const [prisonName, setPrisonName] = useState("");
+  const [dateOfBirth, setDateOfBirth] = useState("");
   const [isFormValid, setIsFormValid] = useState(false);
   const [state, handleSubmit] = useForm("mnqkkwpq");
   const [buttonClicked, setButtonClicked] = useState(false);
@@ -39,7 +40,7 @@ export default function FirstPage() {
     value ? undefined : "Please enter a last name";
   const validatePrisonName: (value?: string) => string | undefined = (value) =>
     value ? undefined : "Please enter a prison name";
-
+    
   // prison number is a capital A followed by 4 numbers and 2 letters
   const validatePrisonNumber: (value?: string) => string | undefined = (
     value
@@ -56,12 +57,39 @@ export default function FirstPage() {
     return result;
   };
 
+  const validateDateOfBirth: (value?: string) => string | undefined = (
+    value
+  ) => {
+    const dateOfBirthRegex = /^(0?[1-9]|[12][0-9]|3[01])\/(0?[1-9]|1[012])\/((19|20)\d{2})$/;
+    const currentDate = new Date();
+    currentDate.setHours(0, 0, 0, 0);
+    const minDate = new Date(currentDate.getFullYear() - 120, currentDate.getMonth(), currentDate.getDate());
+    let result: string | undefined;
+    if (value) {
+      if (!dateOfBirthRegex.test(value)) {
+        result = "Please enter the date in UK date format (dd/mm/yyyy).";
+      } else {
+        const dateParts = value.split('/');
+        const enteredDate = new Date(parseInt(dateParts[2]), parseInt(dateParts[1]) - 1, parseInt(dateParts[0]));
+        if (enteredDate > currentDate || enteredDate < minDate) {
+          result = "Please enter a valid date of birth.";
+        } else {
+          result = undefined;
+        }
+      }
+    } else {
+      result = "Please enter a date of birth.";
+    }
+    return result;
+  };
+
   const validateForm = () => {
     if (
       !validateFirstName(firstName) &&
       !validateLastName(lastName) &&
       !validatePrisonName(prisonName) &&
-      !validatePrisonNumber(prisonerNumber)
+      !validatePrisonNumber(prisonerNumber) &&
+      !validateDateOfBirth(dateOfBirth)
     ) {
       setIsFormValid(true);
     } else {
@@ -71,7 +99,7 @@ export default function FirstPage() {
 
   useEffect(() => {
     validateForm();
-  }, [firstName, lastName, prisonerNumber, prisonName]);
+  }, [firstName, lastName, prisonerNumber, prisonName, dateOfBirth]);
 
 
   async function onSubmit(event: FormEvent<HTMLFormElement>) {
@@ -119,6 +147,21 @@ export default function FirstPage() {
                   />
                 </Label>
               </FormGroup>
+              <FormGroup error={buttonClicked && validateDateOfBirth(dateOfBirth)}>
+                <Label>
+                  <LabelText>Date of Birth</LabelText>
+                  <Input
+                    name="dateOfBirth"
+                    type="date"
+                    value={dateOfBirth}
+                    onChange={(e) => setDateOfBirth(e.target.value)}
+                    required
+                    pattern="(?:0[1-9]|1[0-9]|2[0-9]|3[01])\/(?:0[1-9]|1[012])\/(?:19|20\d{2})"
+                    max={`${currentDate.getFullYear()}-${String(currentDate.getMonth() + 1).padStart(2, '0')}-${String(currentDate.getDate()).padStart(2, '0')}`}
+                  />
+                  <HintText>For example, 31/12/1990</HintText>
+                </Label>
+              </FormGroup>
               <FormGroup error={buttonClicked && validatePrisonNumber(prisonerNumber)}>
                 <Label>
                   <LabelText>Prisoner number</LabelText>
@@ -134,7 +177,6 @@ export default function FirstPage() {
                 <Select
                   label="Prison name"
                   hint="For example, Cardiff"
-                  
                   input={{
                     name:"prisonName",
                     value: prisonName,
@@ -199,7 +241,7 @@ export default function FirstPage() {
                     <option value="Cardiff">
                       Cardiff
                     </option>
-                  </Select>
+                </Select>
               </FormGroup>
               <FormGroup>
                 <Button type="submit" disabled={state.submitting}>Continue</Button>

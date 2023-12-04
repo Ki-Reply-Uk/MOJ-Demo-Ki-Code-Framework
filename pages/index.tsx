@@ -20,8 +20,6 @@ import { useForm } from '@formspree/react';
 export default function FirstPage() {
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastname] = useState("");
-  const [dateOfBirth, setDateOfBirth] = useState("");
-  const [age, setAge] = useState(undefined);
   const [prisonerNumber, setPrisonerNumber] = useState("");
   const [prisonName, setPrisonName] = useState("");
   const [isFormValid, setIsFormValid] = useState(false);
@@ -35,42 +33,19 @@ export default function FirstPage() {
     console.log(state.errors)
   }
 
-  const validateFirstName = (value) =>
+  const validateFirstName: (value?: string) => string | undefined = (value) =>
     value ? undefined : "Please enter a first name";
-  const validateLastName = (value) =>
+  const validateLastName: (value?: string) => string | undefined = (value) =>
     value ? undefined : "Please enter a last name";
-  const validateDateOfBirth = (dob) => {
-    const dobRegex = /^(0[1-9]|[12][0-9]|3[01])\/(0[1-9]|1[012])\/(19|20)\d\d$/;
-    const currentDate = new Date();
-    const currentDay = ('0' + currentDate.getDate()).slice(-2);
-    const currentMonth = ('0' + (currentDate.getMonth() + 1)).slice(-2);
-    const currentYear = currentDate.getFullYear();
-    const currentDateFormatted = currentYear + '/' + currentMonth + '/' + currentDay;
-
-    if (!dob) {
-      return "Please enter a date of birth";
-    } else if (!dobRegex.test(dob)) {
-      return "Please enter a date of birth in the format DD/MM/YYYY";
-    } else {
-      const convertedDOB = dob.split('/').reverse().join('/');
-      if (new Date(convertedDOB) > new Date(currentDateFormatted)) {
-        return "Date of birth cannot be in the future";
-      }
-    }
-    const born = new Date(convertedDOB);
-    let age = currentDate.getFullYear() - born.getFullYear();
-    const m = currentDate.getMonth() - born.getMonth();
-    if (m < 0 || (m === 0 && currentDate.getDate() < born.getDate())) {
-      age = age - 1;
-    }
-    setAge(age);
-    return undefined;
-  };
-  const validatePrisonName = (value) =>
+  const validatePrisonName: (value?: string) => string | undefined = (value) =>
     value ? undefined : "Please enter a prison name";
-  const validatePrisonNumber = (value) => {
+
+  // prison number is a capital A followed by 4 numbers and 2 letters
+  const validatePrisonNumber: (value?: string) => string | undefined = (
+    value
+  ) => {
     const prisonerNumberRegex = /([A])\d{4}[A-Z]{2}/;
-    let result;
+    let result: string | undefined;
     if (value) {
       result = prisonerNumberRegex.test(value)
         ? undefined
@@ -80,12 +55,11 @@ export default function FirstPage() {
     }
     return result;
   };
-  
+
   const validateForm = () => {
     if (
       !validateFirstName(firstName) &&
       !validateLastName(lastName) &&
-      !validateDateOfBirth(dateOfBirth) &&
       !validatePrisonName(prisonName) &&
       !validatePrisonNumber(prisonerNumber)
     ) {
@@ -97,16 +71,17 @@ export default function FirstPage() {
 
   useEffect(() => {
     validateForm();
-  }, [firstName, lastName, prisonerNumber, prisonName, dateOfBirth]);
+  }, [firstName, lastName, prisonerNumber, prisonName]);
 
-  async function onSubmit(event) {
+
+  async function onSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault()
     setButtonClicked(true);
     console.log("Button clicked");
     if (isFormValid) {
       console.log("Form is valid.");
       handleSubmit(event);
-      alert("Form submitted!");
+      alert("Email sent!");
     } else {
       console.log(
         "The form is invalid, please ensure all fields are existing and formatted."
@@ -117,7 +92,7 @@ export default function FirstPage() {
   return (
     <Page header={<TopNav />}>
       <H1>Visit Someone in Prison</H1>
-      
+
       <GridRow>
         <GridCol setWidth="two-thirds">
           <FormGroup>
@@ -128,7 +103,6 @@ export default function FirstPage() {
               <FormGroup error={buttonClicked && validateFirstName(firstName)}>
                 <Label>
                   <LabelText>Prisoner first name</LabelText>
-                  <HintText>Enter the first name as shown on official documents.</HintText>
                   <Input
                     name="firstName"
                     value={firstName}
@@ -146,21 +120,6 @@ export default function FirstPage() {
                   />
                 </Label>
               </FormGroup>
-              <FormGroup error={buttonClicked && validateDateOfBirth(dateOfBirth)}>
-                <Label>
-                  <LabelText>Date of Birth</LabelText>
-                  <HintText>For example, 31/12/1990</HintText>
-                  <Input
-                    type="date"
-                    name="dateOfBirth"
-                    value={dateOfBirth}
-                    min="1900-01-01"
-                    max={new Date().toISOString().split("T")[0]}
-                    onChange={(e) => setDateOfBirth(e.target.value.split("-").reverse().join("/"))}
-                  />
-                  {age !== undefined && (<HintText>Age: {age}</HintText>)}
-                </Label>
-              </FormGroup>
               <FormGroup error={buttonClicked && validatePrisonNumber(prisonerNumber)}>
                 <Label>
                   <LabelText>Prisoner number</LabelText>
@@ -175,7 +134,8 @@ export default function FirstPage() {
               <FormGroup error={buttonClicked && validatePrisonName(prisonName)}>
                 <Select
                   label="Prison name"
-                  hint="Select from the list below"
+                  hint="For example, Cardiff"
+                  
                   input={{
                     name:"prisonName",
                     value: prisonName,
@@ -183,29 +143,67 @@ export default function FirstPage() {
                   }}
                 >
                   <option value="">Select a prison</option>
-                    <option value="Acklington">Acklington</option>
-                    <option value="Altcourse">Altcourse</option>
-                    <option value="Ashfield">Ashfield</option>
-                    <option value="Askham Grange">Askham Grange</option>
-                    <option value="Aylesbury">Aylesbury</option>
-                    <option value="Bedford">Bedford</option>
-                    <option value="Belmarsh">Belmarsh</option>
-                    <option value="Berwyn">Berwyn</option>
-                    <option value="Birmingham">Birmingham</option>
-                    <option value="Blantyre House">Blantyre House</option>
-                    <option value="Brinsford">Brinsford</option>
-                    <option value="Bristol">Bristol</option>
-                    <option value="Brixton">Brixton</option>
-                    <option value="Bronzefield">Bronzefield</option>
-                    <option value="Buckley Hall">Buckley Hall</option>
-                    <option value="Bullingdon (Convicted Only)">Bullingdon (Convicted Only)</option>
-                    <option value="Bullingdon (Remand Only)">Bullingdon (Remand Only)</option>
-                    <option value="Bure">Bure</option>
-                    <option value="Cardiff">Cardiff</option>
-                </Select>
+                    <option value="Acklington">
+                      Acklington
+                    </option>
+                    <option value="Altcourse">
+                      Altcourse
+                    </option>
+                    <option value="Ashfield">
+                      Ashfield
+                    </option>
+                    <option value="Askham Grange">
+                      Askham Grange
+                    </option>
+                    <option value="Aylesbury">
+                      Aylesbury
+                    </option>
+                    <option value="Bedford">
+                      Bedford
+                    </option>
+                    <option value="Belmarsh">
+                      Belmarsh
+                    </option>
+                    <option value="Berwyn">
+                      Berwyn
+                    </option>
+                    <option value="Birmingham">
+                      Birmingham
+                    </option>
+                    <option value="Blantyre House">
+                      Blantyre House
+                    </option>
+                    <option value="Brinsford">
+                      Brinsford
+                    </option>
+                    <option value="Bristol">
+                      Bristol
+                    </option>
+                    <option value="Brixton">
+                      Brixton
+                    </option>
+                    <option value="Bronzefield">
+                      Bronzefield
+                    </option>
+                    <option value="Buckley Hall">
+                      Buckley Hall
+                    </option>
+                    <option value="Bullingdon (Convicted Only)">
+                      Bullingdon (Convicted Only)
+                    </option>
+                    <option value="Bullingdon (Remand Only)">
+                      Bullingdon (Remand Only)
+                    </option>
+                    <option value="Bure">
+                      Bure
+                    </option>
+                    <option value="Cardiff">
+                      Cardiff
+                    </option>
+                  </Select>
               </FormGroup>
               <FormGroup>
-                <Button type="submit" disabled={state.submitting || !isFormValid}>Continue</Button>
+                <Button type="submit" disabled={state.submitting}>Continue</Button>
               </FormGroup>
             </form>
           </Fieldset>

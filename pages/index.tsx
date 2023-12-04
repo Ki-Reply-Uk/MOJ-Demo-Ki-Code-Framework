@@ -22,8 +22,6 @@ export default function FirstPage() {
   const [lastName, setLastname] = useState("");
   const [prisonerNumber, setPrisonerNumber] = useState("");
   const [prisonName, setPrisonName] = useState("");
-  const [dateOfBirth, setDateOfBirth] = useState("");
-  const [dateOfBirthError, setDateOfBirthError] = useState<string | undefined>(undefined);
   const [isFormValid, setIsFormValid] = useState(false);
   const [state, handleSubmit] = useForm("mnqkkwpq");
   const [buttonClicked, setButtonClicked] = useState(false);
@@ -41,6 +39,8 @@ export default function FirstPage() {
     value ? undefined : "Please enter a last name";
   const validatePrisonName: (value?: string) => string | undefined = (value) =>
     value ? undefined : "Please enter a prison name";
+
+  // prison number is a capital A followed by 4 numbers and 2 letters
   const validatePrisonNumber: (value?: string) => string | undefined = (
     value
   ) => {
@@ -55,17 +55,13 @@ export default function FirstPage() {
     }
     return result;
   };
-  const validateDateOfBirth: (value?: string) => string | undefined = (value) => {
-    const dateOfBirthRegex = /^(0[1-9]|1[0-2])\/(0[1-9]|[12][0-9]|3[01])\/(19|20)\d{2}$/;
-    return value && dateOfBirthRegex.test(value) ? undefined : "Please enter a valid date of birth (MM/DD/YYYY)";
-  };
+
   const validateForm = () => {
     if (
       !validateFirstName(firstName) &&
       !validateLastName(lastName) &&
       !validatePrisonName(prisonName) &&
-      !validatePrisonNumber(prisonerNumber) &&
-      !validateDateOfBirth(dateOfBirth)
+      !validatePrisonNumber(prisonerNumber)
     ) {
       setIsFormValid(true);
     } else {
@@ -75,7 +71,7 @@ export default function FirstPage() {
 
   useEffect(() => {
     validateForm();
-  }, [firstName, lastName, prisonerNumber, prisonName, dateOfBirth]);
+  }, [firstName, lastName, prisonerNumber, prisonName]);
 
 
   async function onSubmit(event: FormEvent<HTMLFormElement>) {
@@ -135,28 +131,11 @@ export default function FirstPage() {
                   />
                 </Label>
               </FormGroup>
-              <FormGroup error={buttonClicked && validateDateOfBirth(dateOfBirth)}>
-                <Label>
-                  <LabelText>Prisoner date of birth</LabelText>
-                  <Input
-                    name="dateOfBirth"
-                    type="text"
-                    value={dateOfBirth}
-                    onChange={(e) => {
-                      setDateOfBirth(e.target.value);
-                      setDateOfBirthError(validateDateOfBirth(e.target.value));
-                    }}
-                  />
-                </Label>
-              </FormGroup>
-              <FormGroup error={buttonClicked && dateOfBirthError}>
-                <HintText>{dateOfBirthError}</HintText>
-              </FormGroup>
               <FormGroup error={buttonClicked && validatePrisonName(prisonName)}>
                 <Select
                   label="Prison name"
                   hint="For example, Cardiff"
-
+                  
                   input={{
                     name:"prisonName",
                     value: prisonName,
@@ -221,7 +200,7 @@ export default function FirstPage() {
                     <option value="Cardiff">
                       Cardiff
                     </option>
-                </Select>
+                  </Select>
               </FormGroup>
               <FormGroup>
                 <Button type="submit" disabled={state.submitting}>Continue</Button>

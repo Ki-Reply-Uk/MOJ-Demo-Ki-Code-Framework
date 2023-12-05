@@ -154,14 +154,13 @@ export default function FirstPage() {
   }
 
   return (
-{/* 
 <div> 
-*/} 
 {/*    
-<div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+<div style={{ 
+display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
 <img src={imageURL} alt="DALL-E Generated Image" style={{ width: '50%', height: 'auto' }} />
-<div style={{ width: '45%' }}> 
 */}
+<div style={{ width: '45%' }}> 
     <Page header={<TopNav />}>
 {/*      
 <div style={{
@@ -309,12 +308,10 @@ boxShadow: '0 4px 8px rgba(0, 0, 0, 0.1)' // subtle shadow
           </Fieldset>
         </GridCol>
       </GridRow>
-    </Page>
-{/*   
+    </Page>   
 </div>
-</div> 
-*/} 
-{/*    
+</div>
+{/*
 <div style={{
 position: 'fixed',
 top: 0,

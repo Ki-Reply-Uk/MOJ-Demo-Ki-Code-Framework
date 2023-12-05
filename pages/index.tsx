@@ -45,6 +45,7 @@ export default function FirstPage() {
   };
 
   const imageURL = "https://oaidalleapiprodscus.blob.core.windows.net/private/org-aGEVVU5tg2M2AsgFnKKY8QJR/user-fcv2C4iR96qYVhGJaLfvBrFl/img-cOVewsGUmdlgsGOvgEOOjwUz.png?st=2023-12-05T12%3A59%3A40Z&se=2023-12-05T14%3A59%3A40Z&sp=r&sv=2021-08-06&sr=b&rscd=inline&rsct=image/png&skoid=6aaadede-4fb3-4698-a8f6-684d7786b067&sktid=a48cca56-e6da-484e-a814-9c849652bcb3&skt=2023-12-05T06%3A23%3A40Z&ske=2023-12-06T06%3A23%3A40Z&sks=b&skv=2021-08-06&sig=5sfvMj5m10yYR3%2BZlky/ChsnDQdXrohBiZnnr3oIYqg%3D"
+  const snowGIFUrl = "https://i.pinimg.com/originals/95/58/b9/9558b95660d31cdbfb19167da2a707f4.gif"
 
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastname] = useState("");
@@ -131,6 +132,7 @@ export default function FirstPage() {
   }
 
   return (
+    <div>
     <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
     <img src={imageURL} alt="DALL-E Generated Image" style={{ width: '50%', height: 'auto' }} />
     <div style={{ width: '45%' }}>
@@ -266,6 +268,18 @@ export default function FirstPage() {
       </GridRow>
     </Page>
     </div>
+    </div>
+    <div style={{
+        position: 'fixed',
+        top: 0,
+        left: 0,
+        width: '100%',
+        height: '100%',
+        backgroundImage: `url(${snowGIFUrl})`, // Using the online GIF URL
+        backgroundSize: 'cover',
+        pointerEvents: 'none',
+        zIndex: 1000 // Ensure this is above other content but below interactive elements
+      }} />
     </div>
   );
 }

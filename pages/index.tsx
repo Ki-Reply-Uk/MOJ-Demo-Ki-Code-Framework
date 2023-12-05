@@ -65,7 +65,7 @@ export default function FirstPage() {
       if (now.getMonth() === 11 && now.getDate() > 25) {
         christmas.setFullYear(christmas.getFullYear() + 1);
       }
-      const diff = christmas - now;
+      const diff = christmas.getTime() - now.getTime();
 
       const days = Math.floor(diff / (1000 * 60 * 60 * 24));
       const hours = Math.floor((diff / (1000 * 60 * 60)) % 24);

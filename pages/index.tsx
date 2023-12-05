@@ -159,8 +159,20 @@ export default function FirstPage() {
     <img src={imageURL} alt="DALL-E Generated Image" style={{ width: '50%', height: 'auto' }} />
     <div style={{ width: '45%' }}>
     <Page header={<TopNav />}>
-      <div style={{ textAlign: 'center', padding: '10px', fontSize: '20px', fontWeight: 'bold' }}>
-      Countdown to Christmas: {timeUntilChristmas}
+    <div style={{
+        textAlign: 'center',
+        padding: '15px',
+        backgroundColor: '#FF0000', // Christmas red background
+        color: '#FFFFFF', // White text
+        fontWeight: 'bold',
+        border: '5px dashed gold', // Gold border
+        borderRadius: '10px',
+        margin: '10px 0',
+        fontSize: '24px',
+        fontFamily: 'Arial, sans-serif',
+        boxShadow: '0 4px 8px rgba(0, 0, 0, 0.1)' // subtle shadow
+      }}>
+        🎄 Only {timeUntilChristmas} until Christmas! 🎅
       </div>
       <H1>{translations.pageTitle}</H1>
 

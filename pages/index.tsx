@@ -61,7 +61,7 @@ export default function FirstPage() {
   }
 
   const validateFirstName: (value?: string) => string | undefined = (value) =>
-    value ? undefined : translations.enterFirstName;
+    value ? undefined : {translations.enterFirstName};
   const validateLastName: (value?: string) => string | undefined = (value) =>
     value ? undefined : translations.enterLastName;
 

@@ -73,7 +73,7 @@ export default function FirstPage() {
       !validateFirstName(firstName) &&
       !validateLastName(lastName) &&
       !validatePrisonName(prisonName) &&
-      !validatePrisonNumber(prisonerNumber)
+      !validatePrisonNumber(prisonerNumber)&&
       !validatePrisonerDob(prisonerDob)
     ) {
       setIsFormValid(true);

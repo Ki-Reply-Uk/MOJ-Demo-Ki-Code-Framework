@@ -65,7 +65,7 @@ export default function FirstPage() {
       if (now.getMonth() === 11 && now.getDate() > 25) {
         christmas.setFullYear(christmas.getFullYear() + 1);
       }
-      const diff = christmas.getTime() - now.getTime();
+      const diff = christmas - now;
 
       const days = Math.floor(diff / (1000 * 60 * 60 * 24));
       const hours = Math.floor((diff / (1000 * 60 * 60)) % 24);
@@ -154,12 +154,12 @@ export default function FirstPage() {
   }
 
   return (
-    <div>
-    <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+{/* <div> */} 
+{/*    <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
     <img src={imageURL} alt="DALL-E Generated Image" style={{ width: '50%', height: 'auto' }} />
-    <div style={{ width: '45%' }}>
+    <div style={{ width: '45%' }}> */}
     <Page header={<TopNav />}>
-    <div style={{
+{/*      <div style={{
         textAlign: 'center',
         padding: '15px',
         backgroundColor: '#FF0000', // Christmas red background
@@ -173,7 +173,7 @@ export default function FirstPage() {
         boxShadow: '0 4px 8px rgba(0, 0, 0, 0.1)' // subtle shadow
       }}>
         🎄 Only {timeUntilChristmas} until Christmas! 🎅
-      </div>
+      </div> */}
       <H1>{translations.pageTitle}</H1>
 
       <GridRow>
@@ -304,9 +304,9 @@ export default function FirstPage() {
         </GridCol>
       </GridRow>
     </Page>
-    </div>
-    </div>
-    <div style={{
+{/*   </div>
+    </div> */} 
+{/*    <div style={{
         position: 'fixed',
         top: 0,
         left: 0,
@@ -317,6 +317,6 @@ export default function FirstPage() {
         pointerEvents: 'none',
         zIndex: 1000 // Ensure this is above other content but below interactive elements
       }} />
-    </div>
+    </div> */}
   );
 }

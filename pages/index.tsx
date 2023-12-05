@@ -154,26 +154,32 @@ export default function FirstPage() {
   }
 
   return (
-{/* <div> */} 
-{/*    <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-    <img src={imageURL} alt="DALL-E Generated Image" style={{ width: '50%', height: 'auto' }} />
-    <div style={{ width: '45%' }}> */}
+{/* 
+<div> 
+*/} 
+{/*    
+<div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+<img src={imageURL} alt="DALL-E Generated Image" style={{ width: '50%', height: 'auto' }} />
+<div style={{ width: '45%' }}> 
+*/}
     <Page header={<TopNav />}>
-{/*      <div style={{
-        textAlign: 'center',
-        padding: '15px',
-        backgroundColor: '#FF0000', // Christmas red background
-        color: '#FFFFFF', // White text
-        fontWeight: 'bold',
-        border: '5px dashed gold', // Gold border
-        borderRadius: '10px',
-        margin: '10px 0',
-        fontSize: '24px',
-        fontFamily: 'Arial, sans-serif',
-        boxShadow: '0 4px 8px rgba(0, 0, 0, 0.1)' // subtle shadow
-      }}>
-        🎄 Only {timeUntilChristmas} until Christmas! 🎅
-      </div> */}
+{/*      
+<div style={{
+textAlign: 'center',
+padding: '15px',
+backgroundColor: '#FF0000', // Christmas red background
+color: '#FFFFFF', // White text
+fontWeight: 'bold',
+border: '5px dashed gold', // Gold border
+borderRadius: '10px',
+margin: '10px 0',
+fontSize: '24px',
+fontFamily: 'Arial, sans-serif',
+boxShadow: '0 4px 8px rgba(0, 0, 0, 0.1)' // subtle shadow
+}}>
+🎄 Only {timeUntilChristmas} until Christmas! 🎅
+</div> 
+*/}
       <H1>{translations.pageTitle}</H1>
 
       <GridRow>
@@ -304,19 +310,23 @@ export default function FirstPage() {
         </GridCol>
       </GridRow>
     </Page>
-{/*   </div>
-    </div> */} 
-{/*    <div style={{
-        position: 'fixed',
-        top: 0,
-        left: 0,
-        width: '100%',
-        height: '100%',
-        backgroundImage: `url(${snowGIFUrl})`, // Using the online GIF URL
-        backgroundSize: 'cover',
-        pointerEvents: 'none',
-        zIndex: 1000 // Ensure this is above other content but below interactive elements
-      }} />
-    </div> */}
+{/*   
+</div>
+</div> 
+*/} 
+{/*    
+<div style={{
+position: 'fixed',
+top: 0,
+left: 0,
+width: '100%',
+height: '100%',
+backgroundImage: `url(${snowGIFUrl})`, // Using the online GIF URL
+backgroundSize: 'cover',
+pointerEvents: 'none',
+zIndex: 1000 // Ensure this is above other content but below interactive elements
+}} />
+</div> 
+*/}
   );
 }

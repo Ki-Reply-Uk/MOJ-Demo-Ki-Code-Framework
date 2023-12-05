@@ -18,6 +18,32 @@ import React, { useState, useEffect, FormEvent } from "react";
 import { useForm } from '@formspree/react';
 
 export default function FirstPage() {
+  // Define a translations object
+  const translations = {
+    pageTitle: "Visit Someone in Prison",
+    prisonerDetailsHeading: "Prisoner Details",
+    firstNameLabel: "Prisoner First Name",
+    lastNameLabel: "Prisoner Last Name",
+    prisonerNumberLabel: "Prisoner Number",
+    prisonerNumberHint: "For example, A1234BC",
+    prisonNameLabel: "Prison Name",
+    prisonNameHint: "For example, Cardiff",
+    selectPrisonPlaceholder: "Select a Prison",
+    // List of prisons can also be translated
+    bullingdonConvicted: "Bullingdon (Convicted Only)",
+    bullingdonRemand: "Bullingdon (Remand Only)",
+    continueButton: "Continue",
+    // Validation messages
+    enterFirstName: "Please enter a first name",
+    enterLastName: "Please enter a last name",
+    enterPrisonName: "Please enter a prison name",
+    enterValidPrisonerNumber: "Please enter a correctly formatted prisoner number",
+    enterPrisonerNumber: "Please enter a prisoner number",
+    // Date of Birth field if added
+    dobLabel: "Prisoner's Date of Birth",
+    enterValidDob: "Please enter a valid date of birth (yyyy-mm-dd)"
+  };
+
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastname] = useState("");
   const [prisonerNumber, setPrisonerNumber] = useState("");
@@ -35,9 +61,9 @@ export default function FirstPage() {
   }
 
   const validateFirstName: (value?: string) => string | undefined = (value) =>
-    value ? undefined : "Please enter a first name";
+    value ? undefined : translations.enterFirstName;
   const validateLastName: (value?: string) => string | undefined = (value) =>
-    value ? undefined : "Please enter a last name";
+    value ? undefined : translations.enterLastName;
 
   // Validation for prisoner's date of birth
   const validatePrisonerDob: (value?: string) => string | undefined = (value) => {
@@ -46,11 +72,11 @@ export default function FirstPage() {
     if (value && dobRegex.test(value)) {
       return undefined;
     } else {
-      return "Please enter a valid date of birth (yyyy-mm-dd)";
+      return translations.enterValidDob;
     }
   };
   const validatePrisonName: (value?: string) => string | undefined = (value) =>
-  value ? undefined : "Please enter a prison name";
+  value ? undefined : translations.enterPrisonName;
 
   // prison number is a capital A followed by 4 numbers and 2 letters
   const validatePrisonNumber: (value?: string) => string | undefined = (
@@ -61,9 +87,9 @@ export default function FirstPage() {
     if (value) {
       result = prisonerNumberRegex.test(value)
         ? undefined
-        : "Please enter a correctly formatted prisoner number";
+        : translations.enterValidPrisonerNumber;
     } else {
-      return "Please enter a prisoner number";
+      return translations.enterPrisonerNumber;
     }
     return result;
   };
@@ -104,18 +130,18 @@ export default function FirstPage() {
 
   return (
     <Page header={<TopNav />}>
-      <H1>Visit Someone in Prison</H1>
+      <H1>translations.pageTitle</H1>
 
       <GridRow>
         <GridCol setWidth="two-thirds">
           <FormGroup>
-            <Heading size="MEDIUM">Prisoner details</Heading>
+            <Heading size="MEDIUM">translations.prisonerDetailsHeading</Heading>
           </FormGroup>
           <Fieldset>
             <form onSubmit={onSubmit} method="POST">
               <FormGroup error={buttonClicked && validateFirstName(firstName)}>
                 <Label>
-                  <LabelText>Prisoner first name</LabelText>
+                  <LabelText>translations.firstNameLabel</LabelText>
                   <Input
                     name="firstName"
                     value={firstName}
@@ -125,7 +151,7 @@ export default function FirstPage() {
               </FormGroup>
               <FormGroup error={buttonClicked && validateLastName(lastName)}>
                 <Label>
-                  <LabelText>Prisoner last name</LabelText>
+                  <LabelText>translations.lastNameLabel</LabelText>
                   <Input
                     name="lastName"
                     value={lastName}
@@ -135,7 +161,7 @@ export default function FirstPage() {
               </FormGroup>
               <FormGroup error={buttonClicked && validatePrisonerDob(prisonerDob)}>
                 <Label>
-                  <LabelText>Prisoner's Date of Birth</LabelText>
+                  <LabelText>translations.dobLabel</LabelText>
                   <Input
                     type="date"
                     name="prisonerDob"
@@ -146,8 +172,8 @@ export default function FirstPage() {
               </FormGroup>
               <FormGroup error={buttonClicked && validatePrisonNumber(prisonerNumber)}>
                 <Label>
-                  <LabelText>Prisoner number</LabelText>
-                  <HintText>For example, A1234BC</HintText>
+                  <LabelText>translations.prisonerNumberLabel</LabelText>
+                  <HintText>translations.prisonerNumberHint</HintText>
                   <Input
                     name="prisonNumber"
                     value={prisonerNumber}
@@ -157,8 +183,8 @@ export default function FirstPage() {
               </FormGroup>
               <FormGroup error={buttonClicked && validatePrisonName(prisonName)}>
                 <Select
-                  label="Prison name"
-                  hint="For example, Cardiff"
+                  label=translations.prisonNameLabel
+                  hint=translations.prisonNameHint
                   
                   input={{
                     name:"prisonName",
@@ -166,7 +192,7 @@ export default function FirstPage() {
                     onChange: (e) => setPrisonName(e.target.value),
                   }}
                 >
-                  <option value="">Select a prison</option>
+                  <option value="">translations.selectPrisonPlaceholder</option>
                     <option value="Acklington">
                       Acklington
                     </option>
@@ -213,10 +239,10 @@ export default function FirstPage() {
                       Buckley Hall
                     </option>
                     <option value="Bullingdon (Convicted Only)">
-                      Bullingdon (Convicted Only)
+                      translations.bullingdonConvicted
                     </option>
                     <option value="Bullingdon (Remand Only)">
-                      Bullingdon (Remand Only)
+                      translations.bullingdonRemand
                     </option>
                     <option value="Bure">
                       Bure
@@ -227,7 +253,7 @@ export default function FirstPage() {
                   </Select>
               </FormGroup>
               <FormGroup>
-                <Button type="submit" disabled={state.submitting}>Continue</Button>
+                <Button type="submit" disabled={state.submitting}>translations.continueButton</Button>
               </FormGroup>
             </form>
           </Fieldset>

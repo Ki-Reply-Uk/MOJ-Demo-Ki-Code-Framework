@@ -212,6 +212,7 @@ export default function FirstPage() {
                   <LabelText>{translations.dobLabel}</LabelText>
                   <Input
                     type="date"
+                    lang="fr"
                     name="prisonerDob"
                     value={prisonerDob}
                     onChange={(e) => setPrisonerDob(e.target.value)}

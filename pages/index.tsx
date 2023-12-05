@@ -306,6 +306,7 @@ export default function FirstPage() {
     </Page>
     </div>
     </div>
+      {/*  
     <div style={{
         position: 'fixed',
         top: 0,
@@ -318,5 +319,6 @@ export default function FirstPage() {
         zIndex: 1000 // Ensure this is above other content but below interactive elements
       }} />
     </div>
+    */}
   );
 }

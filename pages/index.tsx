@@ -44,7 +44,7 @@ export default function FirstPage() {
     enterValidDob: "Veuillez entrer une date de naissance valide (aaaa-mm-jj)"
   };
 
-  const imageURL = "https://oaidalleapiprodscus.blob.core.windows.net/private/org-aGEVVU5tg2M2AsgFnKKY8QJR/user-fcv2C4iR96qYVhGJaLfvBrFl/img-cOVewsGUmdlgsGOvgEOOjwUz.png?st=2023-12-05T12%3A59%3A40Z&se=2023-12-05T14%3A59%3A40Z&sp=r&sv=2021-08-06&sr=b&rscd=inline&rsct=image/png&skoid=6aaadede-4fb3-4698-a8f6-684d7786b067&sktid=a48cca56-e6da-484e-a814-9c849652bcb3&skt=2023-12-05T06%3A23%3A40Z&ske=2023-12-06T06%3A23%3A40Z&sks=b&skv=2021-08-06&sig=5sfvMj5m10yYR3%2BZlky/ChsnDQdXrohBiZnnr3oIYqg%3D"
+  const imageURL = "https://oaidalleapiprodscus.blob.core.windows.net/private/org-aGEVVU5tg2M2AsgFnKKY8QJR/user-fcv2C4iR96qYVhGJaLfvBrFl/img-NU5xcJIOtukL4RMhCr5cNkL9.png?st=2023-12-05T14%3A23%3A14Z&se=2023-12-05T16%3A23%3A14Z&sp=r&sv=2021-08-06&sr=b&rscd=inline&rsct=image/png&skoid=6aaadede-4fb3-4698-a8f6-684d7786b067&sktid=a48cca56-e6da-484e-a814-9c849652bcb3&skt=2023-12-05T13%3A34%3A06Z&ske=2023-12-06T13%3A34%3A06Z&sks=b&skv=2021-08-06&sig=NWXuzd28QPLZyXKuLt5T1PSG52tj8XOf7TLDZgyxY6M%3D"
   const snowGIFUrl = "https://i.pinimg.com/originals/95/58/b9/9558b95660d31cdbfb19167da2a707f4.gif"
 
   const [firstName, setFirstName] = useState("");

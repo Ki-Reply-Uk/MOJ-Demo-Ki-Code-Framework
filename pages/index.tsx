@@ -20,29 +20,31 @@ import { useForm } from '@formspree/react';
 export default function FirstPage() {
   // Define a translations object
   const translations = {
-    pageTitle: "Visit Someone in Prison",
-    prisonerDetailsHeading: "Prisoner Details",
-    firstNameLabel: "Prisoner First Name",
-    lastNameLabel: "Prisoner Last Name",
-    prisonerNumberLabel: "Prisoner Number",
-    prisonerNumberHint: "For example, A1234BC",
-    prisonNameLabel: "Prison Name",
-    prisonNameHint: "For example, Cardiff",
-    selectPrisonPlaceholder: "Select a Prison",
+    pageTitle: "Visiter quelqu'un en prison",
+    prisonerDetailsHeading: "Détails du détenu",
+    firstNameLabel: "Prénom du détenu",
+    lastNameLabel: "Nom de famille du détenu",
+    prisonerNumberLabel: "Numéro de détenu",
+    prisonerNumberHint: "Par exemple, A1234BC",
+    prisonNameLabel: "Nom de la prison",
+    prisonNameHint: "Par exemple, Cardiff",
+    selectPrisonPlaceholder: "Sélectionnez une prison",
     // List of prisons can also be translated
-    bullingdonConvicted: "Bullingdon (Convicted Only)",
-    bullingdonRemand: "Bullingdon (Remand Only)",
-    continueButton: "Continue",
+    bullingdonConvicted: "Bullingdon (condamné seulement)",
+    bullingdonRemand: "Bullingdon (garde à vue seulement)",
+    continueButton: "Continuer",
     // Validation messages
-    enterFirstName: "Please enter a first name",
-    enterLastName: "Please enter a last name",
-    enterPrisonName: "Please enter a prison name",
-    enterValidPrisonerNumber: "Please enter a correctly formatted prisoner number",
-    enterPrisonerNumber: "Please enter a prisoner number",
+    enterFirstName: "Veuillez entrer un prénom",
+    enterLastName: "Veuillez entrer un nom de famille",
+    enterPrisonName: "Veuillez entrer un nom de prison",
+    enterValidPrisonerNumber: "Veuillez entrer un numéro de détenu correctement formaté",
+    enterPrisonerNumber: "Veuillez entrer un numéro de détenu",
     // Date of Birth field if added
-    dobLabel: "Prisoner's Date of Birth",
-    enterValidDob: "Please enter a valid date of birth (yyyy-mm-dd)"
+    dobLabel: "Date de naissance du détenu",
+    enterValidDob: "Veuillez entrer une date de naissance valide (aaaa-mm-jj)"
   };
+
+  const imageURL = "https://oaidalleapiprodscus.blob.core.windows.net/private/org-aGEVVU5tg2M2AsgFnKKY8QJR/user-fcv2C4iR96qYVhGJaLfvBrFl/img-cOVewsGUmdlgsGOvgEOOjwUz.png?st=2023-12-05T12%3A59%3A40Z&se=2023-12-05T14%3A59%3A40Z&sp=r&sv=2021-08-06&sr=b&rscd=inline&rsct=image/png&skoid=6aaadede-4fb3-4698-a8f6-684d7786b067&sktid=a48cca56-e6da-484e-a814-9c849652bcb3&skt=2023-12-05T06%3A23%3A40Z&ske=2023-12-06T06%3A23%3A40Z&sks=b&skv=2021-08-06&sig=5sfvMj5m10yYR3%2BZlky/ChsnDQdXrohBiZnnr3oIYqg%3D"
 
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastname] = useState("");
@@ -129,6 +131,8 @@ export default function FirstPage() {
   }
 
   return (
+    <div>
+    <img src={imageURL} alt="DALL-E Generated Image" style={{ width: '100%', display: 'block' }} />
     <Page header={<TopNav />}>
       <H1>{translations.pageTitle}</H1>
 
@@ -260,5 +264,6 @@ export default function FirstPage() {
         </GridCol>
       </GridRow>
     </Page>
+    </div>
   );
 }

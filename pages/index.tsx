@@ -131,8 +131,9 @@ export default function FirstPage() {
   }
 
   return (
-    <div>
-    <img src={imageURL} alt="DALL-E Generated Image" style={{ width: '100%', display: 'block' }} />
+    <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+    <img src={imageURL} alt="DALL-E Generated Image" style={{ width: '50%', height: 'auto' }} />
+    <div style={{ width: '45%' }}>
     <Page header={<TopNav />}>
       <H1>{translations.pageTitle}</H1>
 
@@ -264,6 +265,7 @@ export default function FirstPage() {
         </GridCol>
       </GridRow>
     </Page>
+    </div>
     </div>
   );
 }

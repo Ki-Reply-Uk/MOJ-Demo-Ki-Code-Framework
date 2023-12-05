@@ -183,8 +183,8 @@ export default function FirstPage() {
               </FormGroup>
               <FormGroup error={buttonClicked && validatePrisonName(prisonName)}>
                 <Select
-                  label=translations.prisonNameLabel
-                  hint=translations.prisonNameHint
+                  label={translations.prisonNameLabel}
+                  hint={translations.prisonNameHint}
                   
                   input={{
                     name:"prisonName",

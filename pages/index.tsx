@@ -25,6 +25,7 @@ export default function FirstPage() {
   const [isFormValid, setIsFormValid] = useState(false);
   const [state, handleSubmit] = useForm("mnqkkwpq");
   const [buttonClicked, setButtonClicked] = useState(false);
+  const [prisonerDob, setPrisonerDob] = useState("");
 
   if (state.succeeded) {
       console.log("form sent");
@@ -37,8 +38,19 @@ export default function FirstPage() {
     value ? undefined : "Please enter a first name";
   const validateLastName: (value?: string) => string | undefined = (value) =>
     value ? undefined : "Please enter a last name";
+
+  // Validation for prisoner's date of birth
+  const validatePrisonerDob: (value?: string) => string | undefined = (value) => {
+    // Simple validation: check if the date of birth is in a valid date format (yyyy-mm-dd)
+    const dobRegex = /^\d{4}-\d{2}-\d{2}$/;
+    if (value && dobRegex.test(value)) {
+      return undefined;
+    } else {
+      return "Please enter a valid date of birth (yyyy-mm-dd)";
+    }
+  };
   const validatePrisonName: (value?: string) => string | undefined = (value) =>
-    value ? undefined : "Please enter a prison name";
+  value ? undefined : "Please enter a prison name";
 
   // prison number is a capital A followed by 4 numbers and 2 letters
   const validatePrisonNumber: (value?: string) => string | undefined = (
@@ -62,6 +74,7 @@ export default function FirstPage() {
       !validateLastName(lastName) &&
       !validatePrisonName(prisonName) &&
       !validatePrisonNumber(prisonerNumber)
+      !validatePrisonerDob(prisonerDob)
     ) {
       setIsFormValid(true);
     } else {
@@ -117,6 +130,17 @@ export default function FirstPage() {
                     name="lastName"
                     value={lastName}
                     onChange={(e) => setLastname(e.target.value)}
+                  />
+                </Label>
+              </FormGroup>
+              <FormGroup error={buttonClicked && validatePrisonerDob(prisonerDob)}>
+                <Label>
+                  <LabelText>Prisoner's Date of Birth</LabelText>
+                  <Input
+                    type="date"
+                    name="prisonerDob"
+                    value={prisonerDob}
+                    onChange={(e) => setPrisonerDob(e.target.value)}
                   />
                 </Label>
               </FormGroup>

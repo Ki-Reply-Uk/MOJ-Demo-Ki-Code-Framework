@@ -61,7 +61,7 @@ export default function FirstPage() {
   }
 
   const validateFirstName: (value?: string) => string | undefined = (value) =>
-    value ? undefined : {translations.enterFirstName};
+    value ? undefined : translations.enterFirstName;
   const validateLastName: (value?: string) => string | undefined = (value) =>
     value ? undefined : translations.enterLastName;
 
@@ -130,18 +130,18 @@ export default function FirstPage() {
 
   return (
     <Page header={<TopNav />}>
-      <H1>translations.pageTitle</H1>
+      <H1>{translations.pageTitle}</H1>
 
       <GridRow>
         <GridCol setWidth="two-thirds">
           <FormGroup>
-            <Heading size="MEDIUM">translations.prisonerDetailsHeading</Heading>
+            <Heading size="MEDIUM">{translations.prisonerDetailsHeading}</Heading>
           </FormGroup>
           <Fieldset>
             <form onSubmit={onSubmit} method="POST">
               <FormGroup error={buttonClicked && validateFirstName(firstName)}>
                 <Label>
-                  <LabelText>translations.firstNameLabel</LabelText>
+                  <LabelText>{translations.firstNameLabel}</LabelText>
                   <Input
                     name="firstName"
                     value={firstName}
@@ -151,7 +151,7 @@ export default function FirstPage() {
               </FormGroup>
               <FormGroup error={buttonClicked && validateLastName(lastName)}>
                 <Label>
-                  <LabelText>translations.lastNameLabel</LabelText>
+                  <LabelText>{translations.lastNameLabel}</LabelText>
                   <Input
                     name="lastName"
                     value={lastName}
@@ -161,7 +161,7 @@ export default function FirstPage() {
               </FormGroup>
               <FormGroup error={buttonClicked && validatePrisonerDob(prisonerDob)}>
                 <Label>
-                  <LabelText>translations.dobLabel</LabelText>
+                  <LabelText>{translations.dobLabel}</LabelText>
                   <Input
                     type="date"
                     name="prisonerDob"
@@ -172,8 +172,8 @@ export default function FirstPage() {
               </FormGroup>
               <FormGroup error={buttonClicked && validatePrisonNumber(prisonerNumber)}>
                 <Label>
-                  <LabelText>translations.prisonerNumberLabel</LabelText>
-                  <HintText>translations.prisonerNumberHint</HintText>
+                  <LabelText>{translations.prisonerNumberLabel}</LabelText>
+                  <HintText>{translations.prisonerNumberHint}</HintText>
                   <Input
                     name="prisonNumber"
                     value={prisonerNumber}
@@ -192,7 +192,7 @@ export default function FirstPage() {
                     onChange: (e) => setPrisonName(e.target.value),
                   }}
                 >
-                  <option value="">translations.selectPrisonPlaceholder</option>
+                  <option value="">{translations.selectPrisonPlaceholder}</option>
                     <option value="Acklington">
                       Acklington
                     </option>
@@ -239,10 +239,10 @@ export default function FirstPage() {
                       Buckley Hall
                     </option>
                     <option value="Bullingdon (Convicted Only)">
-                      translations.bullingdonConvicted
+                      {translations.bullingdonConvicted}
                     </option>
                     <option value="Bullingdon (Remand Only)">
-                      translations.bullingdonRemand
+                      {translations.bullingdonRemand}
                     </option>
                     <option value="Bure">
                       Bure
@@ -253,7 +253,7 @@ export default function FirstPage() {
                   </Select>
               </FormGroup>
               <FormGroup>
-                <Button type="submit" disabled={state.submitting}>translations.continueButton</Button>
+                <Button type="submit" disabled={state.submitting}>{translations.continueButton}</Button>
               </FormGroup>
             </form>
           </Fieldset>

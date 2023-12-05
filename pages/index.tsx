@@ -318,7 +318,7 @@ export default function FirstPage() {
         pointerEvents: 'none',
         zIndex: 1000 // Ensure this is above other content but below interactive elements
       }} />
+        */}
     </div>
-    */}
   );
 }

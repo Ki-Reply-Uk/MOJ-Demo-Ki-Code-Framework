@@ -45,7 +45,7 @@ export default function FirstPage() {
   };
 
   const imageURL = "https://oaidalleapiprodscus.blob.core.windows.net/private/org-aGEVVU5tg2M2AsgFnKKY8QJR/user-fcv2C4iR96qYVhGJaLfvBrFl/img-NU5xcJIOtukL4RMhCr5cNkL9.png?st=2023-12-05T14%3A23%3A14Z&se=2023-12-05T16%3A23%3A14Z&sp=r&sv=2021-08-06&sr=b&rscd=inline&rsct=image/png&skoid=6aaadede-4fb3-4698-a8f6-684d7786b067&sktid=a48cca56-e6da-484e-a814-9c849652bcb3&skt=2023-12-05T13%3A34%3A06Z&ske=2023-12-06T13%3A34%3A06Z&sks=b&skv=2021-08-06&sig=NWXuzd28QPLZyXKuLt5T1PSG52tj8XOf7TLDZgyxY6M%3D"
-  const snowGIFUrl = "https://i.gifer.com/embedded/download/4bX2.gif"
+  const snowGIFUrl = "https://i.pinimg.com/originals/8b/30/71/8b3071feeff83f1e4a63ed231562ff0c.gif"
 
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastname] = useState("");

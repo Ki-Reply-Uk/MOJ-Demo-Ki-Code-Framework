@@ -56,6 +56,28 @@ export default function FirstPage() {
   const [buttonClicked, setButtonClicked] = useState(false);
   const [prisonerDob, setPrisonerDob] = useState("");
 
+  const [timeUntilChristmas, setTimeUntilChristmas] = useState('');
+
+  useEffect(() => {
+    const timer = setInterval(() => {
+      const now = new Date();
+      const christmas = new Date(now.getFullYear(), 11, 25); // 11 is December in JavaScript Date
+      if (now.getMonth() === 11 && now.getDate() > 25) {
+        christmas.setFullYear(christmas.getFullYear() + 1);
+      }
+      const diff = christmas - now;
+
+      const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+      const hours = Math.floor((diff / (1000 * 60 * 60)) % 24);
+      const minutes = Math.floor((diff / 1000 / 60) % 60);
+      const seconds = Math.floor((diff / 1000) % 60);
+
+      setTimeUntilChristmas(`${days} days ${hours} hours ${minutes} minutes ${seconds} seconds`);
+    }, 1000);
+
+    return () => clearInterval(timer);
+  }, []);
+
   if (state.succeeded) {
       console.log("form sent");
   }
@@ -137,6 +159,9 @@ export default function FirstPage() {
     <img src={imageURL} alt="DALL-E Generated Image" style={{ width: '50%', height: 'auto' }} />
     <div style={{ width: '45%' }}>
     <Page header={<TopNav />}>
+      <div style={{ textAlign: 'center', padding: '10px', fontSize: '20px', fontWeight: 'bold' }}>
+      Countdown to Christmas: {timeUntilChristmas}
+      </div>
       <H1>{translations.pageTitle}</H1>
 
       <GridRow>

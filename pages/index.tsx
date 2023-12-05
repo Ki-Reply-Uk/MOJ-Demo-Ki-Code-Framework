@@ -161,6 +161,7 @@ export default function FirstPage() {
     <div style={{ width: '45%' }}>
     */}
     <Page header={<TopNav />}>
+    {/*  
       <div style={{
         textAlign: 'center',
         padding: '15px',
@@ -176,6 +177,7 @@ export default function FirstPage() {
       }}>
         🎄 Only {timeUntilChristmas} until Christmas! 🎅
       </div>
+      */}
       <H1>{translations.pageTitle}</H1>
 
       <GridRow>

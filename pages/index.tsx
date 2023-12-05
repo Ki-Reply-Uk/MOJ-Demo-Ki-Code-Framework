@@ -155,11 +155,13 @@ export default function FirstPage() {
 
   return (
     <div>
+    {/*
     <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
     <img src={imageURL} alt="DALL-E Generated Image" style={{ width: '50%', height: 'auto' }} />
     <div style={{ width: '45%' }}>
+    */}
     <Page header={<TopNav />}>
-    <div style={{
+      <div style={{
         textAlign: 'center',
         padding: '15px',
         backgroundColor: '#FF0000', // Christmas red background
@@ -304,9 +306,11 @@ export default function FirstPage() {
         </GridCol>
       </GridRow>
     </Page>
+    {/*
     </div>
     </div>
-      {/*  
+    */}
+    {/*
     <div style={{
         position: 'fixed',
         top: 0,
@@ -318,7 +322,7 @@ export default function FirstPage() {
         pointerEvents: 'none',
         zIndex: 1000 // Ensure this is above other content but below interactive elements
       }} />
-        */}
+      */}
     </div>
   );
 }

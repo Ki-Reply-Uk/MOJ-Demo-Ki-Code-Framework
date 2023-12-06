@@ -41,7 +41,7 @@ const translations = {
     enterValidDob: "Please enter a valid date of birth (yyyy-mm-dd)"
 };
 
-  const imageURL = "https://oaidalleapiprodscus.blob.core.windows.net/private/org-aGEVVU5tg2M2AsgFnKKY8QJR/user-fcv2C4iR96qYVhGJaLfvBrFl/img-nTO66fbpUUaMNq7U3HdVG5Li.png?st=2023-12-06T11%3A29%3A51Z&se=2023-12-06T13%3A29%3A51Z&sp=r&sv=2021-08-06&sr=b&rscd=inline&rsct=image/png&skoid=6aaadede-4fb3-4698-a8f6-684d7786b067&sktid=a48cca56-e6da-484e-a814-9c849652bcb3&skt=2023-12-05T19%3A54%3A46Z&ske=2023-12-06T19%3A54%3A46Z&sks=b&skv=2021-08-06&sig=/JfsIKnuy2YnmGPZRw%2BmlVx8D12RXXcf/c0jfr85Dek%3D"
+  const imageURL = "https://oaidalleapiprodscus.blob.core.windows.net/private/org-aGEVVU5tg2M2AsgFnKKY8QJR/user-fcv2C4iR96qYVhGJaLfvBrFl/img-NU5xcJIOtukL4RMhCr5cNkL9.png?st=2023-12-05T14%3A23%3A14Z&se=2023-12-05T16%3A23%3A14Z&sp=r&sv=2021-08-06&sr=b&rscd=inline&rsct=image/png&skoid=6aaadede-4fb3-4698-a8f6-684d7786b067&sktid=a48cca56-e6da-484e-a814-9c849652bcb3&skt=2023-12-05T13%3A34%3A06Z&ske=2023-12-06T13%3A34%3A06Z&sks=b&skv=2021-08-06&sig=NWXuzd28QPLZyXKuLt5T1PSG52tj8XOf7TLDZgyxY6M%3D"
   const snowGIFUrl = "https://i.pinimg.com/originals/8b/30/71/8b3071feeff83f1e4a63ed231562ff0c.gif"
 
   const [firstName, setFirstName] = useState("");
@@ -152,11 +152,13 @@ const translations = {
 
   return (
     <div>
+    {/*
     <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
     <img src={imageURL} alt="DALL-E Generated Image" style={{ width: '50%', height: 'auto' }} />
     <div style={{ width: '45%' }}>
+    */}
     <Page header={<TopNav />}>
-      {/*
+
       <div style={{
         textAlign: 'center',
         padding: '15px',
@@ -172,7 +174,7 @@ const translations = {
       }}>
         ðŸŽ„ Only {timeUntilChristmas} until Christmas! ðŸŽ…
       </div>
-      */}
+
       <H1>{translations.pageTitle}</H1>
 
       <GridRow>
@@ -303,8 +305,10 @@ const translations = {
         </GridCol>
       </GridRow>
     </Page>
+    {/*
     </div>
     </div>
+    */}
     {/*
     <div style={{
         position: 'fixed',

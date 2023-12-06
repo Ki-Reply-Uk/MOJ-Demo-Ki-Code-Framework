@@ -1,4 +1,4 @@
-import {
+ï»¿import {
   Page,
   TopNav,
   H1,
@@ -20,26 +20,26 @@ import { useForm } from '@formspree/react';
 export default function FirstPage() {
   // Define a translations object
 const translations = {
-    pageTitle: "Visit Someone in Prison",
-    prisonerDetailsHeading: "Prisoner Details",
-    firstNameLabel: "Prisoner First Name",
-    lastNameLabel: "Prisoner Last Name",
-    prisonerNumberLabel: "Prisoner Number",
-    prisonerNumberHint: "For example, A1234BC",
-    prisonNameLabel: "Prison Name",
-    prisonNameHint: "For example, Cardiff",
-    selectPrisonPlaceholder: "Select a Prison",
-    bullingdonConvicted: "Bullingdon (Convicted Only)",
-    bullingdonRemand: "Bullingdon (Remand Only)",
-    continueButton: "Continue",
-    enterFirstName: "Please enter a first name",
-    enterLastName: "Please enter a last name",
-    enterPrisonName: "Please enter a prison name",
-    enterValidPrisonerNumber: "Please enter a correctly formatted prisoner number",
-    enterPrisonerNumber: "Please enter a prisoner number",
-    dobLabel: "Prisoner's Date of Birth",
-    enterValidDob: "Please enter a valid date of birth (yyyy-mm-dd)"
-};
+        pageTitle: "Visiter quelqu'un en prison",
+        prisonerDetailsHeading: "Détails du prisonnier",
+        firstNameLabel: "Prénom du prisonnier",
+        lastNameLabel: "Nom du prisonnier",
+        prisonerNumberLabel: "Numéro de prisonnier",
+        prisonerNumberHint: "Par exemple, A1234BC",
+        prisonNameLabel: "Nom de la prison",
+        prisonNameHint: "Par exemple, Cardiff",
+        selectPrisonPlaceholder: "Sélectionnez une prison",
+        bullingdonConvicted: "Bullingdon (condamnés seulement)",
+        bullingdonRemand: "Bullingdon (garde à vue seulement)",
+        continueButton: "Continuer",
+        enterFirstName: "Veuillez entrer un prénom",
+        enterLastName: "Veuillez entrer un nom de famille",
+        enterPrisonName: "Veuillez entrer un nom de prison",
+        enterValidPrisonerNumber: "Veuillez entrer un numéro de prisonnier correctement formaté",
+        enterPrisonerNumber: "Veuillez entrer un numéro de prisonnier",
+        dobLabel: "Date de naissance du prisonnier",
+        enterValidDob: "Veuillez entrer une date de naissance valide (aaaa-mm-jj)"
+    };
 
   const imageURL = "https://oaidalleapiprodscus.blob.core.windows.net/private/org-aGEVVU5tg2M2AsgFnKKY8QJR/user-fcv2C4iR96qYVhGJaLfvBrFl/img-NU5xcJIOtukL4RMhCr5cNkL9.png?st=2023-12-05T14%3A23%3A14Z&se=2023-12-05T16%3A23%3A14Z&sp=r&sv=2021-08-06&sr=b&rscd=inline&rsct=image/png&skoid=6aaadede-4fb3-4698-a8f6-684d7786b067&sktid=a48cca56-e6da-484e-a814-9c849652bcb3&skt=2023-12-05T13%3A34%3A06Z&ske=2023-12-06T13%3A34%3A06Z&sks=b&skv=2021-08-06&sig=NWXuzd28QPLZyXKuLt5T1PSG52tj8XOf7TLDZgyxY6M%3D"
   const snowGIFUrl = "https://i.pinimg.com/originals/8b/30/71/8b3071feeff83f1e4a63ed231562ff0c.gif"
@@ -172,7 +172,7 @@ const translations = {
         fontFamily: 'Arial, sans-serif',
         boxShadow: '0 4px 8px rgba(0, 0, 0, 0.1)' // subtle shadow
       }}>
-        🎄 Only {timeUntilChristmas} until Christmas! 🎅
+        ðŸŽ„ Only {timeUntilChristmas} until Christmas! ðŸŽ…
       </div>
       */}
       <H1>{translations.pageTitle}</H1>

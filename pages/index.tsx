@@ -1,4 +1,4 @@
-ï»¿import {
+import {
   Page,
   TopNav,
   H1,
@@ -21,26 +21,26 @@ export default function FirstPage() {
   // Define a translations object
   const translations = {
     pageTitle: "Visiter quelqu'un en prison",
-    prisonerDetailsHeading: "DÃ©tails du dÃ©tenu",
-    firstNameLabel: "PrÃ©nom du dÃ©tenu",
-    lastNameLabel: "Nom de famille du dÃ©tenu",
-    prisonerNumberLabel: "NumÃ©ro de dÃ©tenu",
+    prisonerDetailsHeading: "Details du detenu",
+    firstNameLabel: "Prenom du detenu",
+    lastNameLabel: "Nom de famille du detenu",
+    prisonerNumberLabel: "Numero de detenu",
     prisonerNumberHint: "Par exemple, A1234BC",
     prisonNameLabel: "Nom de la prison",
     prisonNameHint: "Par exemple, Cardiff",
-    selectPrisonPlaceholder: "SÃ©lectionnez une prison",
+    selectPrisonPlaceholder: "Selectionnez une prison",
     // List of prisons can also be translated
-    bullingdonConvicted: "Bullingdon (condamnÃ© seulement)",
-    bullingdonRemand: "Bullingdon (garde Ã  vue seulement)",
+    bullingdonConvicted: "Bullingdon (condamne seulement)",
+    bullingdonRemand: "Bullingdon (garde a vue seulement)",
     continueButton: "Continuer",
     // Validation messages
-    enterFirstName: "Veuillez entrer un prÃ©nom",
+    enterFirstName: "Veuillez entrer un prenom",
     enterLastName: "Veuillez entrer un nom de famille",
     enterPrisonName: "Veuillez entrer un nom de prison",
-    enterValidPrisonerNumber: "Veuillez entrer un numÃ©ro de dÃ©tenu correctement formatÃ©",
-    enterPrisonerNumber: "Veuillez entrer un numÃ©ro de dÃ©tenu",
+    enterValidPrisonerNumber: "Veuillez entrer un numero de detenu correctement formate",
+    enterPrisonerNumber: "Veuillez entrer un numÃ©ro de detenu",
     // Date of Birth field if added
-    dobLabel: "Date de naissance du dÃ©tenu",
+    dobLabel: "Date de naissance du detenu",
     enterValidDob: "Veuillez entrer une date de naissance valide (aaaa-mm-jj)"
   };
 

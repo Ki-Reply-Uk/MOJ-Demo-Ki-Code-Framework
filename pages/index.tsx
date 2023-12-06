@@ -158,7 +158,7 @@ const translations = {
     <div style={{ width: '45%' }}>
     */}
     <Page header={<TopNav />}>
-
+      {/*
       <div style={{
         textAlign: 'center',
         padding: '15px',
@@ -174,7 +174,7 @@ const translations = {
       }}>
         ðŸŽ„ Only {timeUntilChristmas} until Christmas! ðŸŽ…
       </div>
-
+      */}
       <H1>{translations.pageTitle}</H1>
 
       <GridRow>
@@ -309,7 +309,6 @@ const translations = {
     </div>
     </div>
     */}
-    {/*
     <div style={{
         position: 'fixed',
         top: 0,
@@ -321,7 +320,6 @@ const translations = {
         pointerEvents: 'none',
         zIndex: 1000 // Ensure this is above other content but below interactive elements
       }} />
-      */}
     </div>
   );
 }

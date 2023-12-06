@@ -1,4 +1,4 @@
-ï»¿import {
+import {
   Page,
   TopNav,
   H1,

@@ -29,17 +29,14 @@ export default function FirstPage() {
     prisonNameLabel: "Nom de la prison",
     prisonNameHint: "Par exemple, Cardiff",
     selectPrisonPlaceholder: "Sélectionnez une prison",
-    // List of prisons can also be translated
     bullingdonConvicted: "Bullingdon (condamné seulement)",
     bullingdonRemand: "Bullingdon (garde à vue seulement)",
     continueButton: "Continuer",
-    // Validation messages
     enterFirstName: "Veuillez entrer un prénom",
     enterLastName: "Veuillez entrer un nom de famille",
     enterPrisonName: "Veuillez entrer un nom de prison",
     enterValidPrisonerNumber: "Veuillez entrer un numéro de détenu correctement formaté",
     enterPrisonerNumber: "Veuillez entrer un numéro de détenu",
-    // Date of Birth field if added
     dobLabel: "Date de naissance du détenu",
     enterValidDob: "Veuillez entrer une date de naissance valide (aaaa-mm-jj)"
   };
@@ -155,11 +152,14 @@ export default function FirstPage() {
 
   return (
     <div>
+    {/*
     <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
     <img src={imageURL} alt="DALL-E Generated Image" style={{ width: '50%', height: 'auto' }} />
     <div style={{ width: '45%' }}>
+    */}
     <Page header={<TopNav />}>
-    <div style={{
+      {/*
+      <div style={{
         textAlign: 'center',
         padding: '15px',
         backgroundColor: '#FF0000', // Christmas red background
@@ -174,6 +174,7 @@ export default function FirstPage() {
       }}>
         🎄 Only {timeUntilChristmas} until Christmas! 🎅
       </div>
+      */}
       <H1>{translations.pageTitle}</H1>
 
       <GridRow>
@@ -304,8 +305,11 @@ export default function FirstPage() {
         </GridCol>
       </GridRow>
     </Page>
+    {/*
     </div>
     </div>
+    */}
+    {/*
     <div style={{
         position: 'fixed',
         top: 0,
@@ -317,6 +321,7 @@ export default function FirstPage() {
         pointerEvents: 'none',
         zIndex: 1000 // Ensure this is above other content but below interactive elements
       }} />
+      */}
     </div>
   );
 }
